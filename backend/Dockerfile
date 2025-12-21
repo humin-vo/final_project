@@ -9,5 +9,5 @@ COPY . .
 
 EXPOSE 8000
 
-# Note: Command sẽ được override bởi docker-compose.yml
+# Note: Command overriden by docker-compose.yml
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
