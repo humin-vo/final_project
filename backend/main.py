@@ -3,6 +3,8 @@ from sqlalchemy.orm import Session
 from pydantic import BaseModel
 
 from database import SessionLocal, User
+import asyncio
+import time
 
 app = FastAPI()
 
@@ -37,9 +39,9 @@ class UserResponse(UserCreate):
 # ENDPOINTS
 # --------------------
 
-# Health check
+# api check
 @app.get("/")
-def health_check():
+def api_check():
     return {"status": "API running"}
 
 # GET all users
@@ -85,3 +87,15 @@ def delete_user(user_id: int, db: Session = Depends(get_db)):
     db.delete(db_user)
     db.commit()
     return {"message": "User deleted"}
+
+# async test
+@app.get("/demo-async")
+async def demo_async():    
+    start = time.time()
+    
+    await asyncio.sleep(2) 
+    
+    end = time.time()
+    
+    return {"message": "Async demo works!",
+            "time_taken": f"{end - start:.2f} seconds"}
