@@ -2,7 +2,7 @@ from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
 
-from database import SessionLocal, User
+from backend.database import SessionLocal, User
 import asyncio
 import time
 
